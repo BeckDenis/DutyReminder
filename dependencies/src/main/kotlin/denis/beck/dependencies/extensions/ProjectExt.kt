@@ -4,6 +4,7 @@ import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import denis.beck.dependencies.dependencies.Dependency
+import denis.beck.dependencies.dependencies.Libs
 import org.gradle.api.Project
 
 private val applicationPlugins = listOf(
@@ -12,6 +13,7 @@ private val applicationPlugins = listOf(
 )
 private const val libraryPlugin = "com.android.library"
 private val commonPlugins = listOf("dependencies")
+private val commonDependencies = listOf(Libs.timber)
 
 fun Project.appModule(
     plugins: Array<String> = emptyArray(),
@@ -40,7 +42,7 @@ private fun Project.base(
 ) {
     (plugins + commonPlugins).forEach(this.plugins::apply)
     modules.map(::project).forEach(this.dependencies::implementation)
-    dependencies.forEach(this.dependencies::add)
+    (dependencies + commonDependencies).forEach(this.dependencies::add)
 }
 
 val Project.base: BaseExtension?
