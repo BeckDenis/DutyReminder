@@ -25,5 +25,7 @@ object Libs {
 
     val espressoCore = "androidx.test.espresso:espresso-core:3.4.0".androidTestImpl
 
+    val timber = "com.jakewharton.timber:timber:5.0.1".impl
+
 }
 
